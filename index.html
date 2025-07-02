@@ -111,6 +111,15 @@
             background: none;
             border: none;
         }
+        
+        /* --- ИСПРАВЛЕНИЕ: Логика отображения иконок темы через CSS --- */
+        .theme-toggle .sun { display: none; }
+        .theme-toggle .moon { display: block; }
+
+        html[data-theme="dark"] .theme-toggle .sun { display: block; }
+        html[data-theme="dark"] .theme-toggle .moon { display: none; }
+        /* ----------------------------------------------------------- */
+
 
         .menu-toggle {
             display: none;
@@ -388,33 +397,28 @@ git checkout -b another-new-feature</code></pre>
             const menuToggleBtn = document.getElementById('menu-toggle');
             const body = document.body;
             const html = document.documentElement;
-            const sunIcon = themeToggleBtn.querySelector('.sun');
-            const moonIcon = themeToggleBtn.querySelector('.moon');
-
-            // --- Theme Toggling Logic ---
+            
+            // --- ИСПРАВЛЕНИЕ: Упрощенная логика переключения тем ---
             const applyTheme = (theme) => {
                 html.setAttribute('data-theme', theme);
                 localStorage.setItem('vitepress-theme', theme);
-                if (theme === 'dark') {
-                    sunIcon.style.display = 'block';
-                    moonIcon.style.display = 'none';
-                } else {
-                    sunIcon.style.display = 'none';
-                    moonIcon.style.display = 'block';
-                }
             };
+
             const savedTheme = localStorage.getItem('vitepress-theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
             if (savedTheme) {
                 applyTheme(savedTheme);
             } else {
                 applyTheme(prefersDark ? 'dark' : 'light');
             }
+
             themeToggleBtn.addEventListener('click', () => {
                 const currentTheme = html.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 applyTheme(newTheme);
             });
+            // -------------------------------------------------------------
 
             // --- Mobile Sidebar Logic ---
             menuToggleBtn.addEventListener('click', (e) => {
