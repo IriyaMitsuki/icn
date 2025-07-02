@@ -1,1 +1,414 @@
-test
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <style>
+        /* ------------------- */
+        /* --- CSS STYLING --- */
+        /* ------------------- */
+
+        /* 1. CSS переменные и базовые стили */
+        :root {
+            --c-brand: #646cff;
+            --c-brand-light: #747bff;
+
+            --c-bg: #ffffff;
+            --c-bg-soft: #f9f9f9;
+            --c-bg-mute: #f1f1f1;
+
+            --c-border: #e2e2e3;
+            --c-divider-light: rgba(60, 60, 67, 0.12);
+            
+            --c-text-1: rgba(60, 60, 67, 0.96);
+            --c-text-2: rgba(60, 60, 67, 0.78);
+            --c-text-3: rgba(60, 60, 67, 0.56);
+            
+            --c-code-bg: #f6f6f7;
+            --c-code-text: var(--c-text-1);
+
+            --header-height: 56px;
+            --sidebar-width: 280px;
+        }
+
+        html[data-theme="dark"] {
+            --c-brand: #535bf2;
+            --c-brand-light: #646cff;
+
+            --c-bg: #1e1e20;
+            --c-bg-soft: #27272a;
+            --c-bg-mute: #3a3a3c;
+
+            --c-border: #3a3a3c;
+            --c-divider-light: rgba(84, 84, 84, 0.48);
+            
+            --c-text-1: rgba(255, 255, 255, 0.87);
+            --c-text-2: rgba(235, 235, 241, 0.6);
+            --c-text-3: rgba(235, 235, 241, 0.38);
+            
+            --c-code-bg: #27272a;
+            --c-code-text: var(--c-text-1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--c-text-1);
+            background-color: var(--c-bg);
+            transition: color 0.5s, background-color 0.5s;
+        }
+
+        /* 2. Структура макета (Grid Layout) */
+        .container {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            grid-template-rows: var(--header-height) 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar content";
+            height: 100vh;
+        }
+
+        /* 3. Хедер */
+        .header {
+            grid-area: header;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid var(--c-divider-light);
+            background-color: var(--c-bg);
+            z-index: 10;
+        }
+
+        .header .logo {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--c-text-1);
+            text-decoration: none;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            color: var(--c-text-2);
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Скрыт на десктопе */
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            color: var(--c-text-2);
+            background: none;
+            border: none;
+        }
+
+        /* 4. Боковая панель */
+        .sidebar {
+            grid-area: sidebar;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background-color: var(--c-bg-soft);
+            border-right: 1px solid var(--c-divider-light);
+            padding: 24px;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            z-index: 5;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav h3 {
+            font-size: 1.1em;
+            color: var(--c-text-1);
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+        
+        .sidebar nav li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar nav a {
+            text-decoration: none;
+            color: var(--c-text-2);
+            display: block;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .sidebar nav a:hover {
+            color: var(--c-brand);
+        }
+
+        .sidebar nav a.active {
+            color: var(--c-brand);
+            font-weight: 600;
+        }
+
+        /* 5. Область контента */
+        .content {
+            grid-area: content;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+            margin-bottom: 1em;
+            border-bottom: 1px solid var(--c-divider-light);
+            padding-bottom: 0.3em;
+        }
+
+        .content h2 {
+            font-size: 1.8em;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            border-bottom: 1px solid var(--c-divider-light);
+            padding-bottom: 0.3em;
+        }
+
+        .content p {
+            margin-bottom: 1em;
+        }
+        
+        .content a {
+            color: var(--c-brand);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .content pre {
+            background-color: var(--c-code-bg);
+            color: var(--c-code-text);
+            padding: 1.2em;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+        }
+
+        .content code {
+            font-family: 'Fira Code', 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        /* Inline code */
+        .content p > code, .content li > code {
+            background-color: var(--c-bg-mute);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+
+        /* 6. Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "content";
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                background-color: var(--c-bg); /* Более плотный фон для мобильных */
+            }
+
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+            
+            .header {
+                padding: 0 16px;
+            }
+            
+            .menu-toggle {
+                display: block; /* Показать гамбургер */
+            }
+            
+            .content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ------------------ -->
+    <!-- --- HTML-КОНТЕНТ --- -->
+    <!-- ------------------ -->
+
+    <div class="container">
+        <header class="header">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <a href="123.html" class="logo">Documentation</a>
+            <div class="header-controls">
+                <!-- Переключатель темы -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <nav>
+                <h3>Введение</h3>
+                <ul>
+                    <li><a href="#" class="active">Что такое ProjectName?</a></li>
+                    <li><a href="#">Быстрый старт</a></li>
+                    <li><a href="#">Установка</a></li>
+                </ul>
+
+                <h3>Основные концепции</h3>
+                <ul>
+                    <li><a href="#">Архитектура</a></li>
+                    <li><a href="#">Модель данных</a></li>
+                    <li><a href="#">API Reference</a></li>
+                </ul>
+                
+                <h3>Продвинутое использование</h3>
+                <ul>
+                    <li><a href="#">Плагины</a></li>
+                    <li><a href="#">Кастомизация</a></li>
+                    <li><a href="#">Развертывание</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <div class="content-container">
+                <h1>Что такое ProjectName?</h1>
+                <p><strong>ProjectName</strong> — это теоретическая платформа, предназначенная для демонстрации чистого, адаптивного и функционального дизайна документации. Этот шаблон воспроизводит эстетику <a href="https://vitepress.dev/" target="_blank">VitePress</a> без использования Vue.js или каких-либо других JavaScript-фреймворков.</p>
+                <p>Основная цель — предоставить разработчикам легкий и понятный стартовый шаблон для их собственных проектов документации. Он включает в себя такие важные функции, как адаптивный дизайн, переключение тем (светлая/темная) и стилизацию блоков кода.</p>
+
+                <h2>Ключевые особенности</h2>
+                <p>Шаблон построен на современных веб-стандартах и лучших практиках:</p>
+                <ul>
+                    <li><strong>Чистый JavaScript:</strong> Вся интерактивность реализована на ванильном JS. Нет зависимостей от фреймворков.</li>
+                    <li><strong>CSS Custom Properties:</strong> Легкая смена тем благодаря использованию CSS-переменных.</li>
+                    <li><strong>Адаптивность:</strong> Макет корректно отображается на всех устройствах, от мобильных телефонов до больших десктопных мониторов.</li>
+                    <li><strong>Доступность:</strong> Использование семантических тегов и ARIA-атрибутов для улучшения пользовательского опыта.</li>
+                </ul>
+
+                <h2>Пример кода</h2>
+                <p>Ниже представлен пример блока кода, демонстрирующий стилизацию. Для полноценной подсветки синтаксиса рекомендуется подключить библиотеку, такую как <a href="https://prismjs.com/" target="_blank">Prism.js</a> или <a href="https://highlightjs.org/" target="_blank">highlight.js</a>.</p>
+                <pre><code>function greet(name) {
+  // Эта функция просто возвращает приветствие.
+  // Никакой сложной логики здесь нет.
+  return `Hello, ${name}! Welcome to the documentation.`;
+}
+
+const message = greet('Researcher');
+console.log(message);
+</code></pre>
+                <p>Также поддерживается встраивание кода `inline` внутри текста для обозначения команд или имен переменных.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- -------------------- -->
+    <!-- --- JAVASCRIPT LOGIC --- -->
+    <!-- -------------------- -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const menuToggleBtn = document.getElementById('menu-toggle');
+            const body = document.body;
+            const html = document.documentElement;
+
+            // --- 1. Логика переключения темы ---
+            
+            const sunIcon = themeToggleBtn.querySelector('.sun');
+            const moonIcon = themeToggleBtn.querySelector('.moon');
+
+            // Функция для установки темы
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('vitepress-theme', theme);
+                if (theme === 'dark') {
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                } else {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
+            };
+            
+            // Проверка сохраненной темы при загрузке
+            const savedTheme = localStorage.getItem('vitepress-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else {
+                applyTheme(prefersDark ? 'dark' : 'light');
+            }
+
+            // Обработчик клика на кнопку
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+
+
+            // --- 2. Логика мобильного меню ---
+
+            menuToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Предотвращаем всплытие события
+                body.classList.toggle('sidebar-open');
+            });
+
+            // Закрытие меню по клику вне его
+            document.addEventListener('click', (e) => {
+                const sidebar = document.querySelector('.sidebar');
+                if (body.classList.contains('sidebar-open') && !sidebar.contains(e.target)) {
+                    body.classList.remove('sidebar-open');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
