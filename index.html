@@ -1,54 +1,31 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Начало работы с GitHub</title>
+    <title>Руководство по GitHub</title>
     <style>
+        /* CSS Reset and Base Styles */
         :root {
-            --c-brand: #646cff;
-            --c-brand-light: #747bff;
-
-            --c-bg: #ffffff;
-            --c-bg-soft: #f9f9f9;
-            --c-bg-mute: #f1f1f1;
-
-            --c-border: #e2e2e3;
-            --c-divider-light: rgba(60, 60, 67, 0.12);
-            
-            --c-text-1: rgba(60, 60, 67, 0.96);
-            --c-text-2: rgba(60, 60, 67, 0.78);
-            --c-text-3: rgba(60, 60, 67, 0.56);
-            
-            --c-code-bg: #f6f6f7;
-            --c-code-text: var(--c-text-1);
-
-            --header-height: 56px;
-            --sidebar-width: 280px;
+            --bg-color: #ffffff;
+            --text-color: #213547;
+            --border-color: #e2e8f0;
+            --sidebar-bg: #f8f8f8;
+            --accent-color: #3eaf7c;
+            --code-bg: #f1f1f1;
+            --code-text: #333;
+            --header-bg: rgba(255, 255, 255, 0.85);
         }
 
-        html[data-theme="dark"] {
-            --c-brand: #535bf2;
-            --c-brand-light: #646cff;
-
-            --c-bg: #1e1e20;
-            --c-bg-soft: #27272a;
-            --c-bg-mute: #3a3a3c;
-
-            --c-border: #3a3a3c;
-            --c-divider-light: rgba(84, 84, 84, 0.48);
-            
-            --c-text-1: rgba(255, 255, 255, 0.87);
-            --c-text-2: rgba(235, 235, 241, 0.6);
-            --c-text-3: rgba(235, 235, 241, 0.38);
-            
-            --c-code-bg: #27272a;
-            --c-code-text: var(--c-text-1);
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: calc(var(--header-height) + 20px);
+        html.dark {
+            --bg-color: #1a1a1a;
+            --text-color: rgba(255, 255, 255, 0.87);
+            --border-color: #3a3a3a;
+            --sidebar-bg: #242424;
+            --accent-color: #42d392;
+            --code-bg: #2c2c2c;
+            --code-text: #ddd;
+            --header-bg: rgba(26, 26, 26, 0.85);
         }
 
         *, *::before, *::after {
@@ -58,428 +35,374 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--c-text-1);
-            background-color: var(--c-bg);
-            transition: color 0.5s, background-color 0.5s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.7;
         }
-        .container {
-            display: grid;
-            grid-template-columns: var(--sidebar-width) 1fr;
-            grid-template-rows: var(--header-height) 1fr;
-            grid-template-areas:
-                "header header"
-                "sidebar content";
-            height: 100vh;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .header {
-            grid-area: header;
+
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: var(--header-height);
+            height: 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 24px;
-            border-bottom: 1px solid var(--c-divider-light);
-            background-color: var(--c-bg);
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--header-bg);
+            backdrop-filter: blur(8px);
             z-index: 10;
         }
 
-        .header .logo {
-            font-size: 1.4em;
+        .logo {
+            font-size: 1.5rem;
             font-weight: 600;
-            color: var(--c-text-1);
-            text-decoration: none;
         }
 
-        .header-controls {
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .theme-switcher {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
-            gap: 16px;
-        }
-
-        .theme-toggle {
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            color: var(--c-text-2);
-            background: none;
-            border: none;
+            justify-content: center;
         }
         
-        /* Эта логика идеальна, ничего менять не нужно. CSS сам переключит иконку */
-        .theme-toggle .sun { display: none; }
-        .theme-toggle .moon { display: block; }
-
-        html[data-theme="dark"] .theme-toggle .sun { display: block; }
-        html[data-theme="dark"] .theme-toggle .moon { display: none; }
-        
-        .menu-toggle {
+        .theme-switcher svg {
             display: none;
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            color: var(--c-text-2);
-            background: none;
-            border: none;
         }
-        .sidebar {
-            grid-area: sidebar;
+
+        /* Layout */
+        .container {
+            display: flex;
+            padding-top: 60px;
+        }
+
+        /* Sidebar */
+        aside {
             position: fixed;
-            top: var(--header-height);
+            top: 60px;
             left: 0;
-            bottom: 0;
-            width: var(--sidebar-width);
-            background-color: var(--c-bg-soft);
-            border-right: 1px solid var(--c-divider-light);
+            width: 250px;
+            height: calc(100vh - 60px);
+            border-right: 1px solid var(--border-color);
             padding: 24px;
             overflow-y: auto;
-            transition: transform 0.3s ease-in-out;
-            z-index: 5;
+            background-color: var(--sidebar-bg);
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
-        .sidebar nav ul {
+        aside h2 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        aside ul {
             list-style: none;
         }
 
-        .sidebar nav h3 {
-            font-size: 1.1em;
-            color: var(--c-text-1);
-            margin-bottom: 8px;
-            margin-top: 16px;
-        }
-        
-        .sidebar nav li {
-            margin-bottom: 4px;
-        }
-
-        .sidebar nav a {
+        aside ul li a {
             text-decoration: none;
-            color: var(--c-text-2);
+            color: var(--text-color);
             display: block;
             padding: 4px 0;
-            transition: color 0.2s;
+            border-left: 2px solid transparent;
+            padding-left: 12px;
+            transition: color 0.2s, border-color 0.2s;
         }
 
-        .sidebar nav a:hover {
-            color: var(--c-brand);
+        aside ul li a:hover {
+            color: var(--accent-color);
         }
 
-        .sidebar nav a.active {
-            color: var(--c-brand);
-            font-weight: 600;
-        }
-        .content {
-            grid-area: content;
-            padding: 40px;
-            overflow-y: auto;
-        }
-        
-        .content-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .content h1 {
-            font-size: 2.5em;
-            margin-bottom: 1em;
-            border-bottom: 1px solid var(--c-divider-light);
-            padding-bottom: 0.3em;
-        }
-
-        .content h2 {
-            font-size: 1.8em;
-            margin-top: 2em;
-            margin-bottom: 1em;
-            border-bottom: 1px solid var(--c-divider-light);
-            padding-bottom: 0.3em;
-        }
-
-        .content h3 {
-            font-size: 1.5em;
-            margin-top: 1.8em;
-            margin-bottom: 1em;
-        }
-
-        .content p {
-            margin-bottom: 1em;
-        }
-        
-        .content a {
-            color: var(--c-brand);
-            text-decoration: none;
+        aside ul li a.active {
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
             font-weight: 500;
         }
+
+
+        /* Main Content */
+        main {
+            padding: 24px 48px;
+            margin-left: 250px;
+            max-width: 800px;
+            width: 100%;
+        }
         
-        .content a:hover {
+        main section {
+            margin-bottom: 4rem;
+            padding-top: 70px; /* Offset for fixed header */
+            margin-top: -60px; /* Negative margin to correct anchor position */
+        }
+
+        main h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        main h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        main p, main ol {
+            margin-bottom: 1rem;
+        }
+        
+        main ol {
+            padding-left: 20px;
+        }
+
+        main a {
+            color: var(--accent-color);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        main a:hover {
             text-decoration: underline;
         }
 
-        .content pre {
-            background-color: var(--c-code-bg);
-            color: var(--c-code-text);
-            padding: 1.2em;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1.5em;
-        }
-
-        .content code {
-            font-family: 'Fira Code', 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-            font-size: 0.9em;
-        }
-    
-        .content p > code, .content li > code {
-            background-color: var(--c-bg-mute);
+        code {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            background-color: var(--code-bg);
+            color: var(--code-text);
             padding: 0.2em 0.4em;
             border-radius: 4px;
-            font-size: 0.85em;
+            font-size: 0.9em;
         }
 
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1em;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5em 0;
+        }
+
+        pre code {
+            padding: 0;
+            background: none;
+            font-size: 1em;
+            color: inherit;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-areas:
-                    "header"
-                    "content";
+            aside {
+                display: none; /* Hide sidebar on mobile for simplicity */
             }
-
-            .sidebar {
-                transform: translateX(-100%);
-                background-color: var(--c-bg); 
-            }
-
-            body.sidebar-open .sidebar {
-                transform: translateX(0);
-            }
-            
-            .header {
-                padding: 0 16px;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .content {
+            main {
+                margin-left: 0;
                 padding: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            </button>
-            <a href="#" class="logo">GitHub Quickstart</a>
-            <div class="header-controls">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </button>
-            </div>
-        </header>
 
-        <aside class="sidebar">
-            <!-- Содержимое сайдбара осталось без изменений -->
+    <header>
+        <div class="logo">
+            <a href="#">GitHub Docs</a>
+        </div>
+        <button class="theme-switcher" id="theme-switcher" aria-label="Переключить тему">
+            <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+    </header>
+
+    <div class="container">
+        <aside>
             <nav>
-                <h3>Введение</h3>
+                <h2>Начало работы</h2>
                 <ul>
-                    <li><a href="#intro" class="active">Что такое Git и GitHub?</a></li>
-                    <li><a href="#installation">Установка и Настройка</a></li>
-                </ul>
-                <h3>Основной процесс</h3>
-                <ul>
-                    <li><a href="#create-repo">Создание репозитория</a></li>
-                    <li><a href="#cloning">Клонирование</a></li>
-                    <li><a href="#commit-push">Коммит и Push</a></li>
-                </ul>
-                <h3>Следующие шаги</h3>
-                <ul>
-                    <li><a href="#branching">Ветвление (Branching)</a></li>
-                    <li><a href="#pull-requests">Pull Requests</a></li>
-                    <li><a href="#collaboration">Совместная работа</a></li>
+                    <li><a href="#intro" class="nav-link">Введение</a></li>
+                    <li><a href="#create-account" class="nav-link">Создание аккаунта</a></li>
+                    <li><a href="#create-repo" class="nav-link">Создание репозитория</a></li>
+                    <li><a href="#install-git" class="nav-link">Установка Git</a></li>
+                    <li><a href="#clone-repo" class="nav-link">Клонирование репозитория</a></li>
+                    <li><a href="#first-commit" class="nav-link">Первый коммит</a></li>
+                    <li><a href="#push-changes" class="nav-link">Отправка изменений</a></li>
                 </ul>
             </nav>
         </aside>
 
-        <main class="content">
-             <!-- Содержимое main осталось без изменений -->
-            <div class="content-container">
-                <h1 id="intro">Начало работы с Git и GitHub</h1>
-                <p>Это руководство поможет вам сделать первые шаги в мире контроля версий. Мы разберем основные понятия и команды, которые необходимы каждому разработчику.</p>
-                <p><strong>Git</strong> — это распределённая система управления версиями. Проще говоря, это инструмент, который отслеживает изменения в файлах вашего проекта с течением времени. Он позволяет вам возвращаться к предыдущим версиям, сравнивать изменения и работать над проектом совместно с другими людьми.</p>
-                <p><strong>GitHub</strong> — это веб-сервис для хостинга Git-репозиториев. Он предоставляет облачное хранилище для ваших проектов, а также инструменты для совместной работы, отслеживания задач, проведения код-ревью и многого другого. GitHub — это социальная сеть для разработчиков.</p>
+        <main>
+            <section id="intro">
+                <h1>Начало работы с GitHub</h1>
+                <p>Это руководство поможет вам сделать первые шаги в мире Git и GitHub. Мы рассмотрим основные концепции и команды, необходимые для начала работы.</p>
+                
+                <h2>Что такое Git и GitHub?</h2>
+                <p><strong>Git</strong> — это распределённая система управления версиями. Она позволяет отслеживать изменения в файлах, возвращаться к предыдущим версиям и совместно работать над проектами. Подумайте о ней как о системе "сохранений" для вашего кода.</p>
+                <p><strong>GitHub</strong> — это веб-платформа, которая предоставляет хостинг для Git-репозиториев. Это как социальная сеть для разработчиков, где можно хранить свои проекты, сотрудничать с другими и демонстрировать свою работу.</p>
+            </section>
 
-                <h2 id="installation">Шаг 1: Установка и настройка</h2>
-                <p>Прежде всего, вам нужно установить Git на ваш компьютер. Это можно сделать, скачав установщик с <a href="https://git-scm.com/downloads" target="_blank">официального сайта Git</a>. Процесс установки прост и не требует особых настроек.</p>
-                <p>После установки откройте терминал (командную строку) и выполните следующие команды, чтобы представиться системе Git. Это важно, так как эта информация будет прикреплена ко всем вашим будущим коммитам.</p>
-                <pre><code># Указываем ваше имя
-git config --global user.name "Ваше Имя"
-
-# Указываем ваш email, который вы использовали при регистрации на GitHub
-git config --global user.email "ваш@email.com"</code></pre>
-                <p>Также не забудьте создать аккаунт на <a href="https://github.com/join" target="_blank">GitHub.com</a>, если у вас его еще нет.</p>
-
-                <h2 id="create-repo">Шаг 2: Создание первого репозитория</h2>
-                <p>Репозиторий (или "репо") — это, по сути, папка вашего проекта со всеми файлами и историей их изменений. Давайте создадим свой первый репозиторий на GitHub.</p>
+            <section id="create-account">
+                <h2>Шаг 1: Создание аккаунта</h2>
+                <p>Первое, что нужно сделать — создать аккаунт на GitHub.</p>
                 <ol>
-                    <li>Войдите в свой аккаунт на GitHub.</li>
-                    <li>В правом верхнем углу нажмите на значок `+` и выберите <strong>New repository</strong>.</li>
-                    <li>Дайте вашему репозиторию имя (например, `hello-world`), добавьте краткое описание.</li>
-                    <li>Вы можете сделать репозиторий публичным (виден всем) или приватным (видны только вам и тем, кому вы дадите доступ).</li>
-                    <li>Рекомендуется поставить галочку напротив <strong>Add a README file</strong>. Это создаст начальный файл с описанием проекта.</li>
-                    <li>Нажмите кнопку <strong>Create repository</strong>.</li>
+                    <li>Перейдите на сайт <a href="https://github.com/" target="_blank" rel="noopener noreferrer">github.com</a>.</li>
+                    <li>Нажмите кнопку "Sign up".</li>
+                    <li>Следуйте инструкциям на экране, чтобы выбрать имя пользователя, ввести email и создать пароль.</li>
+                    <li>Подтвердите свой адрес электронной почты.</li>
                 </ol>
-                <p>Поздравляем! Ваш первый репозиторий создан на GitHub.</p>
+                <p>Поздравляем! Теперь у вас есть аккаунт на GitHub.</p>
+            </section>
 
-                <h2 id="main-workflow-title">Шаг 3: Основной рабочий процесс</h2>
-                <p>Теперь давайте скопируем репозиторий с GitHub на ваш компьютер, внесем изменения и отправим их обратно.</p>
-                
-                <h3 id="cloning">Клонирование репозитория</h3>
-                <p>Чтобы работать с файлами локально, нужно "клонировать" удаленный репозиторий. На странице вашего репозитория на GitHub нажмите зеленую кнопку <strong><> Code</strong>, скопируйте URL (убедитесь, что выбрана вкладка HTTPS) и выполните в терминале команду:</p>
-                <pre><code># Замените URL на URL вашего репозитория
-git clone https://github.com/ВАШ_НИКНЕЙМ/ИМЯ_РЕПОЗИТОРИЯ.git
+            <section id="create-repo">
+                <h2>Шаг 2: Создание репозитория</h2>
+                <p>Репозиторий (или "репо") — это место, где хранится ваш проект. Он может содержать папки, файлы, изображения — всё, что относится к вашему проекту.</p>
+                <ol>
+                    <li>На главной странице GitHub нажмите на значок "+" в правом верхнем углу и выберите "New repository".</li>
+                    <li>Введите имя для вашего репозитория (например, <code>my-first-project</code>).</li>
+                    <li>Вы можете добавить краткое описание.</li>
+                    <li>Выберите, будет ли репозиторий <strong>Public</strong> (публичным, видимым для всех) или <strong>Private</strong> (приватным, видимым только вам и тем, кого вы пригласите).</li>
+                    <li>Отметьте галочку "Add a README file". Это создаст файл с описанием проекта.</li>
+                    <li>Нажмите кнопку "Create repository".</li>
+                </ol>
+            </section>
+            
+            <section id="install-git">
+                <h2>Шаг 3: Установка Git</h2>
+                <p>Чтобы работать с репозиториями локально (на своем компьютере), вам нужно установить Git. GitHub предоставляет отличные инструкции по установке для разных операционных систем.</p>
+                 <p>Скачайте и установите Git с <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">официального сайта</a>.</p>
+                 <p>После установки откройте терминал (командную строку) и настройте ваше имя и email, которые будут ассоциироваться с вашими коммитами:</p>
+                <pre><code>git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"</code></pre>
+            </section>
 
-# Перейдите в папку созданного проекта
-cd ИМЯ_РЕПОЗИТОРИЯ</code></pre>
-                
-                <h3 id="commit-push">Коммит и Push</h3>
-                <p>После того как вы внесли изменения в файлы проекта, их нужно сохранить в Git и отправить на GitHub. Этот процесс состоит из трёх шагов:</p>
-                
-                <p><strong>1. Добавление в индекс (Staging):</strong> Вы сообщаете Git, какие именно изменения хотите включить в следующий "снимок" (коммит).</p>
-                <pre><code># Добавляем все измененные и новые файлы в "индекс"
-# Точка означает "все файлы в текущей директории"
+            <section id="clone-repo">
+                <h2>Шаг 4: Клонирование репозитория</h2>
+                <p>Клонирование — это процесс создания локальной копии удаленного репозитория с GitHub на вашем компьютере.</p>
+                <ol>
+                    <li>Перейдите на страницу вашего репозитория на GitHub.</li>
+                    <li>Нажмите зеленую кнопку "&lt;&gt; Code".</li>
+                    <li>Скопируйте URL-адрес (убедитесь, что выбрана вкладка HTTPS).</li>
+                    <li>Откройте терминал, перейдите в папку, где вы хотите сохранить проект, и выполните команду:</li>
+                </ol>
+                <pre><code>git clone https://github.com/YourUsername/your-repository-name.git</code></pre>
+                <p>Замените <code>YourUsername</code> и <code>your-repository-name</code> на ваши данные. После выполнения команды у вас на компьютере появится папка с файлами проекта.</p>
+            </section>
+
+            <section id="first-commit">
+                <h2>Шаг 5: Первый коммит</h2>
+                <p>Коммит — это "снимок" состояния ваших файлов в определенный момент времени. Давайте внесем изменения и зафиксируем их.</p>
+                <ol>
+                    <li>Перейдите в папку с вашим проектом в терминале: <code>cd your-repository-name</code>.</li>
+                    <li>Создайте новый файл. Например, <code>index.html</code>.</li>
+                    <li>Добавьте в него какой-нибудь HTML-код.</li>
+                    <li>Теперь нужно "подготовить" файлы к коммиту (добавить их в область индексации). Используйте команду:</li>
+                </ol>
+                <pre><code># Добавить все измененные и новые файлы
 git add .</code></pre>
+                 <ol start="5">
+                    <li>Теперь зафиксируйте изменения, создав коммит с осмысленным сообщением:</li>
+                </ol>
+                <pre><code>git commit -m "Add initial index.html"</code></pre>
+            </section>
 
-                <p><strong>2. Фиксация (Commit):</strong> Вы создаете тот самый "снимок" с осмысленным сообщением, описывающим сделанные изменения.</p>
-                <pre><code># Фиксируем изменения с осмысленным сообщением
-git commit -m "Добавил информацию о рабочем процессе в README"</code></pre>
-                
-                <p><strong>3. Отправка на GitHub (Push):</strong> Ваш коммит пока существует только на вашем локальном компьютере. Чтобы он появился на GitHub, выполните команду `push`:</p>
-                <pre><code># Отправляем ваши коммиты в удаленный репозиторий (origin) в ветку main
-git push origin main</code></pre>
-                <p>Теперь, если вы обновите страницу вашего репозитория на GitHub, вы увидите все внесенные изменения!</p>
-
-                <h2 id="branching">Следующие шаги: Ветвление (Branching)</h2>
-                <p>Ветвление — это одна из самых мощных функций Git. Она позволяет создавать изолированные "ветки" для разработки нового функционала или исправления ошибок, не затрагивая основную, стабильную версию кода (которая обычно находится в ветке `main`).</p>
-                <p>Это похоже на создание копии проекта, в которой вы можете безопасно экспериментировать.</p>
-                <pre><code># Создать новую ветку с именем new-feature
-git branch new-feature
-
-# Переключиться на новую ветку, чтобы начать в ней работать
-git checkout new-feature
-
-# Или создать и сразу переключиться на нее одной командой
-git checkout -b another-new-feature</code></pre>
-                
-                <h2 id="pull-requests">Pull Requests</h2>
-                <p>Pull Request (PR или запрос на слияние) — это способ предложить ваши изменения для включения в другую ветку (чаще всего в `main`). Это центральный элемент совместной работы на GitHub.</p>
-                <p>Когда вы создаете Pull Request, вы даете возможность другим участникам команды просмотреть ваш код (провести код-ревью), оставить комментарии и убедиться, что ваши изменения не сломают проект, прежде чем они будут влиты в основную кодовую базу.</p>
-
-                <h2 id="collaboration">Совместная работа</h2>
-                <p>GitHub делает совместную работу над кодом простой и эффективной. Используя ветки и pull requests, команда может одновременно работать над разными задачами без конфликтов. Каждый разработчик работает в своей ветке, а затем предлагает свои изменения через Pull Request. Это обеспечивает прозрачность, контроль качества и позволяет создавать сложные проекты силами большой команды.</p>
-            </div>
+            <section id="push-changes">
+                <h2>Шаг 6: Отправка изменений на GitHub</h2>
+                <p>После того как вы сделали коммит локально, нужно отправить эти изменения в удаленный репозиторий на GitHub. Этот процесс называется "push" (пуш).</p>
+                <p>Выполните следующую команду в терминале:</p>
+                <pre><code>git push origin main</code></pre>
+                <p>Эта команда отправляет ваши коммиты из локальной ветки <code>main</code> в удаленный репозиторий, который по умолчанию называется <code>origin</code>. Теперь, если вы обновите страницу репозитория на GitHub, вы увидите свой новый файл!</p>
+            </section>
         </main>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const menuToggleBtn = document.getElementById('menu-toggle');
-            const body = document.body;
-            const html = document.documentElement;
-            
-            // --- ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ---
-            
-            // Функция для применения выбранной темы
+            const themeSwitcher = document.getElementById('theme-switcher');
+            const doc = document.documentElement;
+            const sunIcon = themeSwitcher.querySelector('.sun');
+            const moonIcon = themeSwitcher.querySelector('.moon');
+
             const applyTheme = (theme) => {
-                html.setAttribute('data-theme', theme);
-                // Сохраняем выбор пользователя в localStorage
-                localStorage.setItem('theme-preference', theme);
+                doc.classList.remove('light', 'dark');
+                doc.classList.add(theme);
+                localStorage.setItem('theme', theme);
+
+                if (theme === 'dark') {
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                } else {
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                }
             };
 
-            // Проверяем, есть ли сохраненная тема в localStorage
-            const savedTheme = localStorage.getItem('theme-preference');
-            
-            // Проверяем системные предпочтения пользователя
+            // 1. Проверяем сохраненную тему в localStorage
+            const savedTheme = localStorage.getItem('theme');
+            // 2. Проверяем системные настройки
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
+            // Определяем и применяем начальную тему
             if (savedTheme) {
-                // Если есть сохраненная тема, применяем ее
                 applyTheme(savedTheme);
             } else {
-                // Иначе, применяем тему на основе системных настроек
                 applyTheme(prefersDark ? 'dark' : 'light');
             }
 
-            // Добавляем обработчик клика на кнопку переключения темы
-            themeToggleBtn.addEventListener('click', () => {
-                // Получаем текущую тему
-                const currentTheme = html.getAttribute('data-theme');
-                // Переключаем на противоположную
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                applyTheme(newTheme);
-            });
-            
-            // -------------------------------------------------------------
-
-            // --- Mobile Sidebar Logic (без изменений) ---
-            menuToggleBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                body.classList.toggle('sidebar-open');
-            });
-            document.addEventListener('click', (e) => {
-                const sidebar = document.querySelector('.sidebar');
-                if (body.classList.contains('sidebar-open') && !sidebar.contains(e.target)) {
-                    body.classList.remove('sidebar-open');
-                }
+            // Обработчик клика на переключатель
+            themeSwitcher.addEventListener('click', () => {
+                const currentTheme = doc.classList.contains('dark') ? 'light' : 'dark';
+                applyTheme(currentTheme);
             });
 
-            // --- Active Link Logic (без изменений) ---
-            const sidebarLinks = document.querySelectorAll('.sidebar nav a');
-            const contentSections = document.querySelectorAll('.content-container h1, .content-container h2, .content-container h3');
-            
-            const updateActiveLink = (id) => {
-                sidebarLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
-                });
-            };
-
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (body.classList.contains('sidebar-open')) {
-                        body.classList.remove('sidebar-open');
-                    }
-                });
-            });
+            // Подсветка активной ссылки в навигации при скролле
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const id = entry.target.getAttribute('id');
-                        updateActiveLink(id);
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
                     }
                 });
-            }, { 
-                rootMargin: `-${var(--header-height)} 0px -65% 0px`,
-                threshold: 0 
-            });
+            }, { rootMargin: "-30% 0px -70% 0px" });
 
-            contentSections.forEach(section => {
-                if (section.id) {
-                    observer.observe(section);
-                }
+            sections.forEach(section => {
+                observer.observe(section);
             });
+            
+             // Устанавливаем активную ссылку при загрузке страницы
+            const currentHash = window.location.hash;
+            if (currentHash) {
+                const activeLink = document.querySelector(`.nav-link[href="${currentHash}"]`);
+                if(activeLink) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    activeLink.classList.add('active');
+                }
+            } else if (navLinks.length > 0) {
+                 navLinks[0].classList.add('active');
+            }
         });
     </script>
 </body>
