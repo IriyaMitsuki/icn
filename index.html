@@ -112,15 +112,13 @@
             border: none;
         }
         
-        /* --- ИСПРАВЛЕНИЕ: Логика отображения иконок темы через CSS --- */
+        /* Эта логика идеальна, ничего менять не нужно. CSS сам переключит иконку */
         .theme-toggle .sun { display: none; }
         .theme-toggle .moon { display: block; }
 
         html[data-theme="dark"] .theme-toggle .sun { display: block; }
         html[data-theme="dark"] .theme-toggle .moon { display: none; }
-        /* ----------------------------------------------------------- */
-
-
+        
         .menu-toggle {
             display: none;
             cursor: pointer;
@@ -290,20 +288,19 @@
         </header>
 
         <aside class="sidebar">
+            <!-- Содержимое сайдбара осталось без изменений -->
             <nav>
                 <h3>Введение</h3>
                 <ul>
                     <li><a href="#intro" class="active">Что такое Git и GitHub?</a></li>
                     <li><a href="#installation">Установка и Настройка</a></li>
                 </ul>
-
                 <h3>Основной процесс</h3>
                 <ul>
                     <li><a href="#create-repo">Создание репозитория</a></li>
                     <li><a href="#cloning">Клонирование</a></li>
                     <li><a href="#commit-push">Коммит и Push</a></li>
                 </ul>
-                
                 <h3>Следующие шаги</h3>
                 <ul>
                     <li><a href="#branching">Ветвление (Branching)</a></li>
@@ -314,6 +311,7 @@
         </aside>
 
         <main class="content">
+             <!-- Содержимое main осталось без изменений -->
             <div class="content-container">
                 <h1 id="intro">Начало работы с Git и GitHub</h1>
                 <p>Это руководство поможет вам сделать первые шаги в мире контроля версий. Мы разберем основные понятия и команды, которые необходимы каждому разработчику.</p>
@@ -398,29 +396,41 @@ git checkout -b another-new-feature</code></pre>
             const body = document.body;
             const html = document.documentElement;
             
-            // --- ИСПРАВЛЕНИЕ: Упрощенная логика переключения тем ---
+            // --- ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ---
+            
+            // Функция для применения выбранной темы
             const applyTheme = (theme) => {
                 html.setAttribute('data-theme', theme);
-                localStorage.setItem('vitepress-theme', theme);
+                // Сохраняем выбор пользователя в localStorage
+                localStorage.setItem('theme-preference', theme);
             };
 
-            const savedTheme = localStorage.getItem('vitepress-theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            // Проверяем, есть ли сохраненная тема в localStorage
+            const savedTheme = localStorage.getItem('theme-preference');
             
+            // Проверяем системные предпочтения пользователя
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
             if (savedTheme) {
+                // Если есть сохраненная тема, применяем ее
                 applyTheme(savedTheme);
             } else {
+                // Иначе, применяем тему на основе системных настроек
                 applyTheme(prefersDark ? 'dark' : 'light');
             }
 
+            // Добавляем обработчик клика на кнопку переключения темы
             themeToggleBtn.addEventListener('click', () => {
+                // Получаем текущую тему
                 const currentTheme = html.getAttribute('data-theme');
+                // Переключаем на противоположную
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 applyTheme(newTheme);
             });
+            
             // -------------------------------------------------------------
 
-            // --- Mobile Sidebar Logic ---
+            // --- Mobile Sidebar Logic (без изменений) ---
             menuToggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 body.classList.toggle('sidebar-open');
@@ -432,7 +442,7 @@ git checkout -b another-new-feature</code></pre>
                 }
             });
 
-            // --- Active Link Logic ---
+            // --- Active Link Logic (без изменений) ---
             const sidebarLinks = document.querySelectorAll('.sidebar nav a');
             const contentSections = document.querySelectorAll('.content-container h1, .content-container h2, .content-container h3');
             
