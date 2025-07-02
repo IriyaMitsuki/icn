@@ -46,6 +46,11 @@
             --c-code-text: var(--c-text-1);
         }
 
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 20px);
+        }
+
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -188,6 +193,12 @@
             padding-bottom: 0.3em;
         }
 
+        .content h3 {
+            font-size: 1.5em;
+            margin-top: 1.8em;
+            margin-bottom: 1em;
+        }
+
         .content p {
             margin-bottom: 1em;
         }
@@ -216,7 +227,7 @@
             font-size: 0.9em;
         }
     
-            .content p > code, .content li > code {
+        .content p > code, .content li > code {
             background-color: var(--c-bg-mute);
             padding: 0.2em 0.4em;
             border-radius: 4px;
@@ -273,34 +284,34 @@
             <nav>
                 <h3>Введение</h3>
                 <ul>
-                    <li><a href="#" class="active">Что такое Git и GitHub?</a></li>
-                    <li><a href="#">Установка и Настройка</a></li>
+                    <li><a href="#intro" class="active">Что такое Git и GitHub?</a></li>
+                    <li><a href="#installation">Установка и Настройка</a></li>
                 </ul>
 
                 <h3>Основной процесс</h3>
                 <ul>
-                    <li><a href="#">Создание репозитория</a></li>
-                    <li><a href="#">Клонирование</a></li>
-                    <li><a href="#">Коммит и Push</a></li>
+                    <li><a href="#create-repo">Создание репозитория</a></li>
+                    <li><a href="#cloning">Клонирование</a></li>
+                    <li><a href="#commit-push">Коммит и Push</a></li>
                 </ul>
                 
                 <h3>Следующие шаги</h3>
                 <ul>
-                    <li><a href="#">Ветвление (Branching)</a></li>
-                    <li><a href="#">Pull Requests</a></li>
-                    <li><a href="#">Совместная работа</a></li>
+                    <li><a href="#branching">Ветвление (Branching)</a></li>
+                    <li><a href="#pull-requests">Pull Requests</a></li>
+                    <li><a href="#collaboration">Совместная работа</a></li>
                 </ul>
             </nav>
         </aside>
 
         <main class="content">
             <div class="content-container">
-                <h1>Начало работы с Git и GitHub</h1>
+                <h1 id="intro">Начало работы с Git и GitHub</h1>
                 <p>Это руководство поможет вам сделать первые шаги в мире контроля версий. Мы разберем основные понятия и команды, которые необходимы каждому разработчику.</p>
                 <p><strong>Git</strong> — это распределённая система управления версиями. Проще говоря, это инструмент, который отслеживает изменения в файлах вашего проекта с течением времени. Он позволяет вам возвращаться к предыдущим версиям, сравнивать изменения и работать над проектом совместно с другими людьми.</p>
                 <p><strong>GitHub</strong> — это веб-сервис для хостинга Git-репозиториев. Он предоставляет облачное хранилище для ваших проектов, а также инструменты для совместной работы, отслеживания задач, проведения код-ревью и многого другого. GitHub — это социальная сеть для разработчиков.</p>
 
-                <h2>Шаг 1: Установка и настройка</h2>
+                <h2 id="installation">Шаг 1: Установка и настройка</h2>
                 <p>Прежде всего, вам нужно установить Git на ваш компьютер. Это можно сделать, скачав установщик с <a href="https://git-scm.com/downloads" target="_blank">официального сайта Git</a>. Процесс установки прост и не требует особых настроек.</p>
                 <p>После установки откройте терминал (командную строку) и выполните следующие команды, чтобы представиться системе Git. Это важно, так как эта информация будет прикреплена ко всем вашим будущим коммитам.</p>
                 <pre><code># Указываем ваше имя
@@ -310,7 +321,7 @@ git config --global user.name "Ваше Имя"
 git config --global user.email "ваш@email.com"</code></pre>
                 <p>Также не забудьте создать аккаунт на <a href="https://github.com/join" target="_blank">GitHub.com</a>, если у вас его еще нет.</p>
 
-                <h2>Шаг 2: Создание первого репозитория</h2>
+                <h2 id="create-repo">Шаг 2: Создание первого репозитория</h2>
                 <p>Репозиторий (или "репо") — это, по сути, папка вашего проекта со всеми файлами и историей их изменений. Давайте создадим свой первый репозиторий на GitHub.</p>
                 <ol>
                     <li>Войдите в свой аккаунт на GitHub.</li>
@@ -322,9 +333,10 @@ git config --global user.email "ваш@email.com"</code></pre>
                 </ol>
                 <p>Поздравляем! Ваш первый репозиторий создан на GitHub.</p>
 
-                <h2>Шаг 3: Основной рабочий процесс</h2>
+                <h2 id="main-workflow-title">Шаг 3: Основной рабочий процесс</h2>
                 <p>Теперь давайте скопируем репозиторий с GitHub на ваш компьютер, внесем изменения и отправим их обратно.</p>
-                <p><strong>1. Клонирование репозитория</strong></p>
+                
+                <h3 id="cloning">Клонирование репозитория</h3>
                 <p>Чтобы работать с файлами локально, нужно "клонировать" удаленный репозиторий. На странице вашего репозитория на GitHub нажмите зеленую кнопку <strong><> Code</strong>, скопируйте URL (убедитесь, что выбрана вкладка HTTPS) и выполните в терминале команду:</p>
                 <pre><code># Замените URL на URL вашего репозитория
 git clone https://github.com/ВАШ_НИКНЕЙМ/ИМЯ_РЕПОЗИТОРИЯ.git
@@ -332,21 +344,41 @@ git clone https://github.com/ВАШ_НИКНЕЙМ/ИМЯ_РЕПОЗИТОРИЯ
 # Перейдите в папку созданного проекта
 cd ИМЯ_РЕПОЗИТОРИЯ</code></pre>
                 
-                <p><strong>2. Внесение, индексация и фиксация изменений</strong></p>
-                <p>Теперь откройте папку проекта в вашем любимом редакторе кода. Измените файл `README.md` или создайте новый файл. После того как вы внесли изменения, их нужно сохранить в Git. Этот процесс состоит из двух шагов:</p>
-                <pre><code># 1. Добавляем все измененные и новые файлы в "индекс" (область подготовки)
-# Точка означает "все файлы в текущей директории"
-git add .
-
-# 2. Фиксируем изменения (делаем "коммит") с осмысленным сообщением
-git commit -m "Добавил информацию о рабочем процессе в README"</code></pre>
-                <p>Коммит — это "снимок" состояния вашего проекта в определенный момент времени.</p>
+                <h3 id="commit-push">Коммит и Push</h3>
+                <p>После того как вы внесли изменения в файлы проекта, их нужно сохранить в Git и отправить на GitHub. Этот процесс состоит из трёх шагов:</p>
                 
-                <p><strong>3. Отправка изменений на GitHub</strong></p>
-                <p>Ваш коммит пока существует только на вашем локальном компьютере. Чтобы он появился на GitHub, выполните команду `push`:</p>
+                <p><strong>1. Добавление в индекс (Staging):</strong> Вы сообщаете Git, какие именно изменения хотите включить в следующий "снимок" (коммит).</p>
+                <pre><code># Добавляем все измененные и новые файлы в "индекс"
+# Точка означает "все файлы в текущей директории"
+git add .</code></pre>
+
+                <p><strong>2. Фиксация (Commit):</strong> Вы создаете тот самый "снимок" с осмысленным сообщением, описывающим сделанные изменения.</p>
+                <pre><code># Фиксируем изменения с осмысленным сообщением
+git commit -m "Добавил информацию о рабочем процессе в README"</code></pre>
+                
+                <p><strong>3. Отправка на GitHub (Push):</strong> Ваш коммит пока существует только на вашем локальном компьютере. Чтобы он появился на GitHub, выполните команду `push`:</p>
                 <pre><code># Отправляем ваши коммиты в удаленный репозиторий (origin) в ветку main
 git push origin main</code></pre>
                 <p>Теперь, если вы обновите страницу вашего репозитория на GitHub, вы увидите все внесенные изменения!</p>
+
+                <h2 id="branching">Следующие шаги: Ветвление (Branching)</h2>
+                <p>Ветвление — это одна из самых мощных функций Git. Она позволяет создавать изолированные "ветки" для разработки нового функционала или исправления ошибок, не затрагивая основную, стабильную версию кода (которая обычно находится в ветке `main`).</p>
+                <p>Это похоже на создание копии проекта, в которой вы можете безопасно экспериментировать.</p>
+                <pre><code># Создать новую ветку с именем new-feature
+git branch new-feature
+
+# Переключиться на новую ветку, чтобы начать в ней работать
+git checkout new-feature
+
+# Или создать и сразу переключиться на нее одной командой
+git checkout -b another-new-feature</code></pre>
+                
+                <h2 id="pull-requests">Pull Requests</h2>
+                <p>Pull Request (PR или запрос на слияние) — это способ предложить ваши изменения для включения в другую ветку (чаще всего в `main`). Это центральный элемент совместной работы на GitHub.</p>
+                <p>Когда вы создаете Pull Request, вы даете возможность другим участникам команды просмотреть ваш код (провести код-ревью), оставить комментарии и убедиться, что ваши изменения не сломают проект, прежде чем они будут влиты в основную кодовую базу.</p>
+
+                <h2 id="collaboration">Совместная работа</h2>
+                <p>GitHub делает совместную работу над кодом простой и эффективной. Используя ветки и pull requests, команда может одновременно работать над разными задачами без конфликтов. Каждый разработчик работает в своей ветке, а затем предлагает свои изменения через Pull Request. Это обеспечивает прозрачность, контроль качества и позволяет создавать сложные проекты силами большой команды.</p>
             </div>
         </main>
     </div>
@@ -358,6 +390,8 @@ git push origin main</code></pre>
             const html = document.documentElement;
             const sunIcon = themeToggleBtn.querySelector('.sun');
             const moonIcon = themeToggleBtn.querySelector('.moon');
+
+            // --- Theme Toggling Logic ---
             const applyTheme = (theme) => {
                 html.setAttribute('data-theme', theme);
                 localStorage.setItem('vitepress-theme', theme);
@@ -371,32 +405,68 @@ git push origin main</code></pre>
             };
             const savedTheme = localStorage.getItem('vitepress-theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
             if (savedTheme) {
                 applyTheme(savedTheme);
             } else {
                 applyTheme(prefersDark ? 'dark' : 'light');
             }
-
             themeToggleBtn.addEventListener('click', () => {
                 const currentTheme = html.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 applyTheme(newTheme);
             });
 
+            // --- Mobile Sidebar Logic ---
             menuToggleBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 body.classList.toggle('sidebar-open');
             });
-
             document.addEventListener('click', (e) => {
                 const sidebar = document.querySelector('.sidebar');
                 if (body.classList.contains('sidebar-open') && !sidebar.contains(e.target)) {
                     body.classList.remove('sidebar-open');
                 }
             });
+
+            // --- Active Link Logic ---
+            const sidebarLinks = document.querySelectorAll('.sidebar nav a');
+            const contentSections = document.querySelectorAll('.content-container h1, .content-container h2, .content-container h3');
+            
+            const updateActiveLink = (id) => {
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (body.classList.contains('sidebar-open')) {
+                        body.classList.remove('sidebar-open');
+                    }
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        updateActiveLink(id);
+                    }
+                });
+            }, { 
+                rootMargin: `-${var(--header-height)} 0px -65% 0px`,
+                threshold: 0 
+            });
+
+            contentSections.forEach(section => {
+                if (section.id) {
+                    observer.observe(section);
+                }
+            });
         });
     </script>
-
 </body>
 </html>
