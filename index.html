@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation</title>
     <style>
-        /* ------------------- */
-        /* --- CSS STYLING --- */
-        /* ------------------- */
-
-        /* 1. CSS переменные и базовые стили */
         :root {
             --c-brand: #646cff;
             --c-brand-light: #747bff;
@@ -65,8 +60,6 @@
             background-color: var(--c-bg);
             transition: color 0.5s, background-color 0.5s;
         }
-
-        /* 2. Структура макета (Grid Layout) */
         .container {
             display: grid;
             grid-template-columns: var(--sidebar-width) 1fr;
@@ -76,8 +69,6 @@
                 "sidebar content";
             height: 100vh;
         }
-
-        /* 3. Хедер */
         .header {
             grid-area: header;
             position: fixed;
@@ -117,7 +108,7 @@
         }
 
         .menu-toggle {
-            display: none; /* Скрыт на десктопе */
+            display: none;
             cursor: pointer;
             width: 24px;
             height: 24px;
@@ -125,8 +116,6 @@
             background: none;
             border: none;
         }
-
-        /* 4. Боковая панель */
         .sidebar {
             grid-area: sidebar;
             position: fixed;
@@ -173,8 +162,6 @@
             color: var(--c-brand);
             font-weight: 600;
         }
-
-        /* 5. Область контента */
         .content {
             grid-area: content;
             padding: 40px;
@@ -228,17 +215,14 @@
             font-family: 'Fira Code', 'JetBrains Mono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
             font-size: 0.9em;
         }
-        
-        /* Inline code */
-        .content p > code, .content li > code {
+    
+            .content p > code, .content li > code {
             background-color: var(--c-bg-mute);
             padding: 0.2em 0.4em;
             border-radius: 4px;
             font-size: 0.85em;
         }
 
-
-        /* 6. Адаптивность */
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -249,7 +233,7 @@
 
             .sidebar {
                 transform: translateX(-100%);
-                background-color: var(--c-bg); /* Более плотный фон для мобильных */
+                background-color: var(--c-bg); 
             }
 
             body.sidebar-open .sidebar {
@@ -261,7 +245,7 @@
             }
             
             .menu-toggle {
-                display: block; /* Показать гамбургер */
+                display: block;
             }
             
             .content {
@@ -271,11 +255,6 @@
     </style>
 </head>
 <body>
-
-    <!-- ------------------ -->
-    <!-- --- HTML-КОНТЕНТ --- -->
-    <!-- ------------------ -->
-
     <div class="container">
         <header class="header">
             <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">
@@ -283,7 +262,6 @@
             </button>
             <a href="123.html" class="logo">Documentation</a>
             <div class="header-controls">
-                <!-- Переключатель темы -->
                 <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">
                     <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                     <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -346,23 +324,14 @@ console.log(message);
             </div>
         </main>
     </div>
-
-    <!-- -------------------- -->
-    <!-- --- JAVASCRIPT LOGIC --- -->
-    <!-- -------------------- -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggleBtn = document.getElementById('theme-toggle');
             const menuToggleBtn = document.getElementById('menu-toggle');
             const body = document.body;
             const html = document.documentElement;
-
-            // --- 1. Логика переключения темы ---
-            
             const sunIcon = themeToggleBtn.querySelector('.sun');
             const moonIcon = themeToggleBtn.querySelector('.moon');
-
-            // Функция для установки темы
             const applyTheme = (theme) => {
                 html.setAttribute('data-theme', theme);
                 localStorage.setItem('vitepress-theme', theme);
@@ -374,8 +343,6 @@ console.log(message);
                     moonIcon.style.display = 'block';
                 }
             };
-            
-            // Проверка сохраненной темы при загрузке
             const savedTheme = localStorage.getItem('vitepress-theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -385,22 +352,17 @@ console.log(message);
                 applyTheme(prefersDark ? 'dark' : 'light');
             }
 
-            // Обработчик клика на кнопку
             themeToggleBtn.addEventListener('click', () => {
                 const currentTheme = html.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 applyTheme(newTheme);
             });
 
-
-            // --- 2. Логика мобильного меню ---
-
             menuToggleBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Предотвращаем всплытие события
+                e.stopPropagation();
                 body.classList.toggle('sidebar-open');
             });
 
-            // Закрытие меню по клику вне его
             document.addEventListener('click', (e) => {
                 const sidebar = document.querySelector('.sidebar');
                 if (body.classList.contains('sidebar-open') && !sidebar.contains(e.target)) {
