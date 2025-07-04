@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Wiki - Документация и руководства</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+</head>
+<body>
+    <div class="wiki-container">
+        <!-- Header -->
+        <header class="wiki-header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span class="logo-text">GitHub Wiki</span>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Поиск по документации..." class="search-input">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </div>
+                    
+                    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Открыть меню">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="wiki-layout">
+            <!-- Sidebar -->
+            <aside class="wiki-sidebar" id="sidebar">
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <h3 class="nav-title">Начало работы</h3>
+                        <ul class="nav-list">
+                            <li><a href="#introduction" class="nav-link active">Введение</a></li>
+                            <li><a href="#installation" class="nav-link">Установка</a></li>
+                            <li><a href="#quick-start" class="nav-link">Быстрый старт</a></li>
+                            <li><a href="#configuration" class="nav-link">Конфигурация</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h3 class="nav-title">Основы Git</h3>
+                        <ul class="nav-list">
+                            <li><a href="#git-basics" class="nav-link">Основы Git</a></li>
+                            <li><a href="#repositories" class="nav-link">Репозитории</a></li>
+                            <li><a href="#commits" class="nav-link">Коммиты</a></li>
+                            <li><a href="#branches" class="nav-link">Ветки</a></li>
+                            <li><a href="#merging" class="nav-link">Слияние</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h3 class="nav-title">GitHub Features</h3>
+                        <ul class="nav-list">
+                            <li><a href="#pull-requests" class="nav-link">Pull Requests</a></li>
+                            <li><a href="#issues" class="nav-link">Issues</a></li>
+                            <li><a href="#actions" class="nav-link">GitHub Actions</a></li>
+                            <li><a href="#pages" class="nav-link">GitHub Pages</a></li>
+                            <li><a href="#security" class="nav-link">Безопасность</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h3 class="nav-title">Продвинутые темы</h3>
+                        <ul class="nav-list">
+                            <li><a href="#workflows" class="nav-link">Рабочие процессы</a></li>
+                            <li><a href="#api" class="nav-link">GitHub API</a></li>
+                            <li><a href="#integrations" class="nav-link">Интеграции</a></li>
+                            <li><a href="#best-practices" class="nav-link">Лучшие практики</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="wiki-content" id="content">
+                <div class="content-wrapper">
+                    <!-- Breadcrumbs -->
+                    <nav class="breadcrumbs">
+                        <a href="#" class="breadcrumb-link">Главная</a>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="breadcrumb-current">Введение</span>
+                    </nav>
+
+                    <!-- Article -->
+                    <article class="wiki-article">
+                        <header class="article-header">
+                            <h1 class="article-title">Добро пожаловать в GitHub Wiki</h1>
+                            <div class="article-meta">
+                                <span class="meta-item">
+                                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M12 1v6m0 6v6"></path>
+                                        <path d="m21 12-6 0m-6 0-6 0"></path>
+                                    </svg>
+                                    Обновлено: 15 января 2025
+                                </span>
+                                <span class="meta-item">
+                                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                        <polyline points="14,2 14,8 20,8"></polyline>
+                                    </svg>
+                                    5 мин чтения
+                                </span>
+                            </div>
+                        </header>
+
+                        <div class="article-content">
+                            <section id="introduction">
+                                <p class="lead">Эта документация поможет вам освоить GitHub и Git от основ до продвинутых техник. Здесь вы найдете пошаговые руководства, примеры кода и лучшие практики.</p>
+
+                                <div class="info-box info">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="info-content">
+                                        <strong>Совет:</strong> Используйте поиск в верхней части страницы для быстрого поиска нужной информации.
+                                    </div>
+                                </div>
+
+                                <h2>Что такое GitHub?</h2>
+                                <p>GitHub — это веб-платформа для хостинга IT-проектов и их совместной разработки. Она использует систему контроля версий Git и предоставляет множество дополнительных возможностей:</p>
+
+                                <ul>
+                                    <li><strong>Хостинг репозиториев</strong> — храните свой код в облаке</li>
+                                    <li><strong>Совместная работа</strong> — работайте в команде над проектами</li>
+                                    <li><strong>Issue tracking</strong> — отслеживайте ошибки и задачи</li>
+                                    <li><strong>CI/CD</strong> — автоматизируйте тестирование и развертывание</li>
+                                    <li><strong>GitHub Pages</strong> — бесплатный хостинг для статических сайтов</li>
+                                </ul>
+
+                                <h2>Основные концепции</h2>
+                                <div class="concept-grid">
+                                    <div class="concept-card">
+                                        <div class="concept-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                            </svg>
+                                        </div>
+                                        <h3>Репозиторий</h3>
+                                        <p>Место хранения проекта со всей историей изменений</p>
+                                    </div>
+
+                                    <div class="concept-card">
+                                        <div class="concept-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                            </svg>
+                                        </div>
+                                        <h3>Коммит</h3>
+                                        <p>Снимок состояния проекта в определенный момент времени</p>
+                                    </div>
+
+                                    <div class="concept-card">
+                                        <div class="concept-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M6 3v12"></path>
+                                                <circle cx="18" cy="6" r="3"></circle>
+                                                <circle cx="6" cy="15" r="3"></circle>
+                                                <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                            </svg>
+                                        </div>
+                                        <h3>Ветка</h3>
+                                        <p>Параллельная линия разработки для работы над новыми функциями</p>
+                                    </div>
+
+                                    <div class="concept-card">
+                                        <div class="concept-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+                                            </svg>
+                                        </div>
+                                        <h3>Pull Request</h3>
+                                        <p>Предложение изменений для включения в основную ветку</p>
+                                    </div>
+                                </div>
+
+                                <h2>Быстрые ссылки</h2>
+                                <div class="quick-links">
+                                    <a href="#installation" class="quick-link">
+                                        <div class="quick-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7,10 12,15 17,10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3>Установка Git</h3>
+                                            <p>Настройте Git на вашем компьютере</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="#quick-start" class="quick-link">
+                                        <div class="quick-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3>Быстрый старт</h3>
+                                            <p>Создайте свой первый репозиторий</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="#git-basics" class="quick-link">
+                                        <div class="quick-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3>Изучить основы</h3>
+                                            <p>Освойте базовые команды Git</p>
+                                        </div>
+                                    </a>
+
+                                    <a href="#best-practices" class="quick-link">
+                                        <div class="quick-link-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M9 12l2 2 4-4"></path>
+                                                <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"></path>
+                                                <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"></path>
+                                                <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"></path>
+                                                <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3>Лучшие практики</h3>
+                                            <p>Советы для эффективной работы</p>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="warning-box warning">
+                                    <div class="warning-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="warning-content">
+                                        <strong>Важно:</strong> Всегда делайте резервные копии важных данных перед выполнением операций, которые могут изменить историю репозитория.
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Article Navigation -->
+                        <nav class="article-nav">
+                            <div class="nav-prev">
+                                <span class="nav-label">Предыдущая</span>
+                                <span class="nav-title">—</span>
+                            </div>
+                            <div class="nav-next">
+                                <span class="nav-label">Следующая</span>
+                                <a href="#installation" class="nav-title">Установка</a>
+                            </div>
+                        </nav>
+                    </article>
+                </div>
+            </main>
+
+            <!-- Table of Contents -->
+            <aside class="wiki-toc" id="toc">
+                <div class="toc-header">
+                    <h3>Содержание</h3>
+                </div>
+                <nav class="toc-nav">
+                    <ul class="toc-list">
+                        <li><a href="#introduction" class="toc-link active">Введение</a></li>
+                        <li><a href="#what-is-github" class="toc-link">Что такое GitHub?</a></li>
+                        <li><a href="#basic-concepts" class="toc-link">Основные концепции</a></li>
+                        <li><a href="#quick-links" class="toc-link">Быстрые ссылки</a></li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Search Results Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-results">
+            <div class="search-header">
+                <h3>Результаты поиска</h3>
+                <button class="search-close" id="searchClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="search-content" id="searchResults">
+                <!-- Search results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
