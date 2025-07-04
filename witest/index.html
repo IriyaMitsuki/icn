@@ -108,36 +108,37 @@
                 <div class="content-wrapper">
                     <!-- Breadcrumbs -->
                     <nav class="breadcrumbs">
-                        <a href="#" class="breadcrumb-link">Главная</a>
+                        <a href="#introduction" class="breadcrumb-link">Главная</a>
                         <span class="breadcrumb-separator">/</span>
                         <span class="breadcrumb-current">Введение</span>
                     </nav>
 
                     <!-- Article -->
                     <article class="wiki-article">
-                        <header class="article-header">
-                            <h1 class="article-title">Добро пожаловать в GitHub Wiki</h1>
-                            <div class="article-meta">
-                                <span class="meta-item">
-                                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                        <path d="M12 1v6m0 6v6"></path>
-                                        <path d="m21 12-6 0m-6 0-6 0"></path>
-                                    </svg>
-                                    Обновлено: 15 января 2025
-                                </span>
-                                <span class="meta-item">
-                                    <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                                        <polyline points="14,2 14,8 20,8"></polyline>
-                                    </svg>
-                                    5 мин чтения
-                                </span>
-                            </div>
-                        </header>
+                        <!-- Introduction Section -->
+                        <section id="introduction">
+                            <header class="article-header">
+                                <h1 class="article-title">Добро пожаловать в GitHub Wiki</h1>
+                                <div class="article-meta">
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v6m0 6v6"></path>
+                                            <path d="m21 12-6 0m-6 0-6 0"></path>
+                                        </svg>
+                                        Обновлено: 15 января 2025
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                            <polyline points="14,2 14,8 20,8"></polyline>
+                                        </svg>
+                                        5 мин чтения
+                                    </span>
+                                </div>
+                            </header>
 
-                        <div class="article-content">
-                            <section id="introduction">
+                            <div class="article-content">
                                 <p class="lead">Эта документация поможет вам освоить GitHub и Git от основ до продвинутых техник. Здесь вы найдете пошаговые руководства, примеры кода и лучшие практики.</p>
 
                                 <div class="info-box info">
@@ -281,8 +282,411 @@
                                         <strong>Важно:</strong> Всегда делайте резервные копии важных данных перед выполнением операций, которые могут изменить историю репозитория.
                                     </div>
                                 </div>
-                            </section>
-                        </div>
+                            </div>
+                        </section>
+
+                        <!-- Installation Section -->
+                        <section id="installation">
+                            <header class="article-header">
+                                <h1 class="article-title">Установка Git</h1>
+                                <div class="article-meta">
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v6m0 6v6"></path>
+                                            <path d="m21 12-6 0m-6 0-6 0"></path>
+                                        </svg>
+                                        Обновлено: 15 января 2025
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                            <polyline points="14,2 14,8 20,8"></polyline>
+                                        </svg>
+                                        3 мин чтения
+                                    </span>
+                                </div>
+                            </header>
+
+                            <div class="article-content">
+                                <p class="lead">Первый шаг к работе с GitHub — установка Git на ваш компьютер. Git доступен для всех основных операционных систем.</p>
+
+                                <h2>Windows</h2>
+                                <ol>
+                                    <li>Перейдите на <a href="https://git-scm.com/download/win" target="_blank">официальный сайт Git</a></li>
+                                    <li>Скачайте установщик для Windows</li>
+                                    <li>Запустите установщик и следуйте инструкциям</li>
+                                    <li>Рекомендуется оставить настройки по умолчанию</li>
+                                </ol>
+
+                                <h2>macOS</h2>
+                                <p>Есть несколько способов установки Git на macOS:</p>
+                                
+                                <h3>Через Homebrew (рекомендуется)</h3>
+                                <pre><code>brew install git</code></pre>
+
+                                <h3>Через официальный установщик</h3>
+                                <ol>
+                                    <li>Скачайте установщик с <a href="https://git-scm.com/download/mac" target="_blank">официального сайта</a></li>
+                                    <li>Запустите .dmg файл и следуйте инструкциям</li>
+                                </ol>
+
+                                <h2>Linux</h2>
+                                <p>Для большинства дистрибутивов Linux Git можно установить через пакетный менеджер:</p>
+
+                                <h3>Ubuntu/Debian</h3>
+                                <pre><code>sudo apt update
+sudo apt install git</code></pre>
+
+                                <h3>CentOS/RHEL/Fedora</h3>
+                                <pre><code>sudo yum install git</code></pre>
+
+                                <h2>Проверка установки</h2>
+                                <p>После установки проверьте, что Git установлен корректно:</p>
+                                <pre><code>git --version</code></pre>
+
+                                <div class="info-box info">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="info-content">
+                                        <strong>Совет:</strong> После установки обязательно настройте ваше имя и email для Git.
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Quick Start Section -->
+                        <section id="quick-start">
+                            <header class="article-header">
+                                <h1 class="article-title">Быстрый старт</h1>
+                                <div class="article-meta">
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v6m0 6v6"></path>
+                                            <path d="m21 12-6 0m-6 0-6 0"></path>
+                                        </svg>
+                                        Обновлено: 15 января 2025
+                                    </span>
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                            <polyline points="14,2 14,8 20,8"></polyline>
+                                        </svg>
+                                        7 мин чтения
+                                    </span>
+                                </div>
+                            </header>
+
+                            <div class="article-content">
+                                <p class="lead">Создайте свой первый репозиторий и сделайте первый коммит за несколько минут.</p>
+
+                                <h2>Шаг 1: Создание аккаунта GitHub</h2>
+                                <ol>
+                                    <li>Перейдите на <a href="https://github.com" target="_blank">github.com</a></li>
+                                    <li>Нажмите "Sign up"</li>
+                                    <li>Заполните форму регистрации</li>
+                                    <li>Подтвердите email адрес</li>
+                                </ol>
+
+                                <h2>Шаг 2: Создание репозитория</h2>
+                                <ol>
+                                    <li>Нажмите кнопку "New" или "+" в правом верхнем углу</li>
+                                    <li>Выберите "New repository"</li>
+                                    <li>Введите название репозитория</li>
+                                    <li>Добавьте описание (опционально)</li>
+                                    <li>Выберите публичный или приватный репозиторий</li>
+                                    <li>Отметьте "Add a README file"</li>
+                                    <li>Нажмите "Create repository"</li>
+                                </ol>
+
+                                <h2>Шаг 3: Клонирование репозитория</h2>
+                                <pre><code>git clone https://github.com/username/repository-name.git
+cd repository-name</code></pre>
+
+                                <h2>Шаг 4: Первые изменения</h2>
+                                <ol>
+                                    <li>Создайте или отредактируйте файл</li>
+                                    <li>Добавьте изменения в staging area</li>
+                                    <li>Сделайте коммит</li>
+                                    <li>Отправьте изменения на GitHub</li>
+                                </ol>
+
+                                <pre><code>echo "# Мой первый проект" >> README.md
+git add README.md
+git commit -m "Добавил описание проекта"
+git push origin main</code></pre>
+
+                                <div class="warning-box warning">
+                                    <div class="warning-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="warning-content">
+                                        <strong>Важно:</strong> Не забудьте настроить ваше имя и email перед первым коммитом.
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Configuration Section -->
+                        <section id="configuration">
+                            <header class="article-header">
+                                <h1 class="article-title">Конфигурация Git</h1>
+                                <div class="article-meta">
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v6m0 6v6"></path>
+                                            <path d="m21 12-6 0m-6 0-6 0"></path>
+                                        </svg>
+                                        Обновлено: 15 января 2025
+                                    </span>
+                                </div>
+                            </header>
+
+                            <div class="article-content">
+                                <p class="lead">Настройте Git для комфортной работы с вашими проектами.</p>
+
+                                <h2>Базовая настройка</h2>
+                                <pre><code>git config --global user.name "Ваше Имя"
+git config --global user.email "your.email@example.com"</code></pre>
+
+                                <h2>Настройка редактора</h2>
+                                <pre><code>git config --global core.editor "code --wait"</code></pre>
+
+                                <h2>Просмотр конфигурации</h2>
+                                <pre><code>git config --list</code></pre>
+                            </div>
+                        </section>
+
+                        <!-- Git Basics Section -->
+                        <section id="git-basics">
+                            <header class="article-header">
+                                <h1 class="article-title">Основы Git</h1>
+                                <div class="article-meta">
+                                    <span class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v6m0 6v6"></path>
+                                            <path d="m21 12-6 0m-6 0-6 0"></path>
+                                        </svg>
+                                        Обновлено: 15 января 2025
+                                    </span>
+                                </div>
+                            </header>
+
+                            <div class="article-content">
+                                <p class="lead">Изучите основные команды Git для ежедневной работы с кодом.</p>
+
+                                <h2>Основные команды</h2>
+                                <ul>
+                                    <li><code>git init</code> — инициализация репозитория</li>
+                                    <li><code>git add</code> — добавление файлов в staging area</li>
+                                    <li><code>git commit</code> — создание коммита</li>
+                                    <li><code>git status</code> — проверка статуса</li>
+                                    <li><code>git log</code> — просмотр истории</li>
+                                </ul>
+
+                                <h2>Рабочий процесс</h2>
+                                <ol>
+                                    <li>Внесите изменения в файлы</li>
+                                    <li>Добавьте изменения: <code>git add .</code></li>
+                                    <li>Создайте коммит: <code>git commit -m "Описание изменений"</code></li>
+                                    <li>Отправьте на сервер: <code>git push</code></li>
+                                </ol>
+                            </div>
+                        </section>
+
+                        <!-- Repositories Section -->
+                        <section id="repositories">
+                            <header class="article-header">
+                                <h1 class="article-title">Работа с репозиториями</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Узнайте как создавать, клонировать и управлять репозиториями.</p>
+                                <h2>Создание репозитория</h2>
+                                <p>Репозиторий можно создать локально или на GitHub.</p>
+                            </div>
+                        </section>
+
+                        <!-- Commits Section -->
+                        <section id="commits">
+                            <header class="article-header">
+                                <h1 class="article-title">Коммиты</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Изучите как правильно создавать коммиты и писать сообщения.</p>
+                                <h2>Хорошие практики коммитов</h2>
+                                <p>Коммиты должны быть атомарными и иметь понятные сообщения.</p>
+                            </div>
+                        </section>
+
+                        <!-- Branches Section -->
+                        <section id="branches">
+                            <header class="article-header">
+                                <h1 class="article-title">Ветки</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Работа с ветками для параллельной разработки.</p>
+                                <h2>Создание веток</h2>
+                                <pre><code>git branch feature-name
+git checkout feature-name</code></pre>
+                            </div>
+                        </section>
+
+                        <!-- Merging Section -->
+                        <section id="merging">
+                            <header class="article-header">
+                                <h1 class="article-title">Слияние веток</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Объединение изменений из разных веток.</p>
+                                <h2>Merge vs Rebase</h2>
+                                <p>Два основных способа объединения веток.</p>
+                            </div>
+                        </section>
+
+                        <!-- Pull Requests Section -->
+                        <section id="pull-requests">
+                            <header class="article-header">
+                                <h1 class="article-title">Pull Requests</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Предложение изменений и код-ревью через Pull Requests.</p>
+                                <h2>Создание Pull Request</h2>
+                                <p>Pull Request — это способ предложить изменения в проект.</p>
+                            </div>
+                        </section>
+
+                        <!-- Issues Section -->
+                        <section id="issues">
+                            <header class="article-header">
+                                <h1 class="article-title">Issues</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Отслеживание багов и задач с помощью Issues.</p>
+                                <h2>Создание Issue</h2>
+                                <p>Issues помогают организовать работу над проектом.</p>
+                            </div>
+                        </section>
+
+                        <!-- GitHub Actions Section -->
+                        <section id="actions">
+                            <header class="article-header">
+                                <h1 class="article-title">GitHub Actions</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Автоматизация с помощью GitHub Actions.</p>
+                                <h2>Создание workflow</h2>
+                                <p>GitHub Actions позволяет автоматизировать CI/CD процессы.</p>
+                            </div>
+                        </section>
+
+                        <!-- GitHub Pages Section -->
+                        <section id="pages">
+                            <header class="article-header">
+                                <h1 class="article-title">GitHub Pages</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Бесплатный хостинг статических сайтов.</p>
+                                <h2>Настройка GitHub Pages</h2>
+                                <p>Разместите свой сайт бесплатно на GitHub Pages.</p>
+                            </div>
+                        </section>
+
+                        <!-- Security Section -->
+                        <section id="security">
+                            <header class="article-header">
+                                <h1 class="article-title">Безопасность</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Обеспечение безопасности ваших проектов.</p>
+                                <h2>SSH ключи</h2>
+                                <p>Настройка SSH для безопасного доступа к репозиториям.</p>
+                            </div>
+                        </section>
+
+                        <!-- Workflows Section -->
+                        <section id="workflows">
+                            <header class="article-header">
+                                <h1 class="article-title">Рабочие процессы</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Эффективные рабочие процессы для команд.</p>
+                                <h2>Git Flow</h2>
+                                <p>Популярная модель ветвления для больших проектов.</p>
+                            </div>
+                        </section>
+
+                        <!-- API Section -->
+                        <section id="api">
+                            <header class="article-header">
+                                <h1 class="article-title">GitHub API</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Интеграция с GitHub через REST API.</p>
+                                <h2>Аутентификация</h2>
+                                <p>Получение токена доступа для работы с API.</p>
+                            </div>
+                        </section>
+
+                        <!-- Integrations Section -->
+                        <section id="integrations">
+                            <header class="article-header">
+                                <h1 class="article-title">Интеграции</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Подключение внешних сервисов к GitHub.</p>
+                                <h2>Популярные интеграции</h2>
+                                <p>Slack, Jira, и другие инструменты для команд.</p>
+                            </div>
+                        </section>
+
+                        <!-- Best Practices Section -->
+                        <section id="best-practices">
+                            <header class="article-header">
+                                <h1 class="article-title">Лучшие практики</h1>
+                            </header>
+                            <div class="article-content">
+                                <p class="lead">Советы и рекомендации для эффективной работы.</p>
+                                
+                                <h2>Сообщения коммитов</h2>
+                                <ul>
+                                    <li>Используйте повелительное наклонение</li>
+                                    <li>Первая строка — краткое описание (до 50 символов)</li>
+                                    <li>Подробности — с новой строки</li>
+                                </ul>
+
+                                <h2>Структура проекта</h2>
+                                <ul>
+                                    <li>Используйте .gitignore для исключения ненужных файлов</li>
+                                    <li>Добавьте README.md с описанием проекта</li>
+                                    <li>Используйте осмысленные названия веток</li>
+                                </ul>
+
+                                <div class="info-box info">
+                                    <div class="info-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="info-content">
+                                        <strong>Совет:</strong> Регулярно делайте коммиты с небольшими изменениями вместо редких больших коммитов.
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
                         <!-- Article Navigation -->
                         <nav class="article-nav">
@@ -307,9 +711,23 @@
                 <nav class="toc-nav">
                     <ul class="toc-list">
                         <li><a href="#introduction" class="toc-link active">Введение</a></li>
-                        <li><a href="#what-is-github" class="toc-link">Что такое GitHub?</a></li>
-                        <li><a href="#basic-concepts" class="toc-link">Основные концепции</a></li>
-                        <li><a href="#quick-links" class="toc-link">Быстрые ссылки</a></li>
+                        <li><a href="#installation" class="toc-link">Установка</a></li>
+                        <li><a href="#quick-start" class="toc-link">Быстрый старт</a></li>
+                        <li><a href="#configuration" class="toc-link">Конфигурация</a></li>
+                        <li><a href="#git-basics" class="toc-link">Основы Git</a></li>
+                        <li><a href="#repositories" class="toc-link">Репозитории</a></li>
+                        <li><a href="#commits" class="toc-link">Коммиты</a></li>
+                        <li><a href="#branches" class="toc-link">Ветки</a></li>
+                        <li><a href="#merging" class="toc-link">Слияние</a></li>
+                        <li><a href="#pull-requests" class="toc-link">Pull Requests</a></li>
+                        <li><a href="#issues" class="toc-link">Issues</a></li>
+                        <li><a href="#actions" class="toc-link">GitHub Actions</a></li>
+                        <li><a href="#pages" class="toc-link">GitHub Pages</a></li>
+                        <li><a href="#security" class="toc-link">Безопасность</a></li>
+                        <li><a href="#workflows" class="toc-link">Рабочие процессы</a></li>
+                        <li><a href="#api" class="toc-link">GitHub API</a></li>
+                        <li><a href="#integrations" class="toc-link">Интеграции</a></li>
+                        <li><a href="#best-practices" class="toc-link">Лучшие практики</a></li>
                     </ul>
                 </nav>
             </aside>
